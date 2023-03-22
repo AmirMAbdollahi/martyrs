@@ -13,7 +13,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -53,5 +53,17 @@ dependencies {
     // Navigation Graph
     implementation "io.insert-koin:koin-androidx-navigation:$koin_android_version"
 
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    //rxjave
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+
+    //timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 
 }
