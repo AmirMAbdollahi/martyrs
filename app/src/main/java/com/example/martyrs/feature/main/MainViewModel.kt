@@ -4,4 +4,8 @@ import com.example.martyrs.common.BaseViewModel
 
 class MainViewModel : BaseViewModel() {
 
+    init {
+
+    }
+
 }

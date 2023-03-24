@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.martyrs.R
 import io.reactivex.disposables.CompositeDisposable
@@ -45,6 +46,7 @@ interface BaseView {
 
 abstract class BaseViewModel : ViewModel() {
     val compositeDisposable = CompositeDisposable()
+    val progressBarLiveData = MutableLiveData<Boolean>()
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()
