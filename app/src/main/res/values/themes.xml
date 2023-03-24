@@ -27,5 +27,4 @@
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/primary_regular</item>
     </style>
-
 </resources>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">شهدای مسجد صفاری</string>
+    <string name="fullName">نام و نام خانوادگی</string>
+    <string name="fatherName">نام پدر</string>
+    <string name="birthDate">تاریخ تولد</string>
+    <string name="martyrDate">تاریخ شهادت</string>
 </resources>
