@@ -7,12 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.martyrs.R
 import com.example.martyrs.data.Data
-import com.example.martyrs.data.Martyr
 import com.example.martyrs.services.ImageLoadingService
 import com.example.martyrs.view.MartyrImageView
 
 class MartyrListAdapter(val imageLoadingService: ImageLoadingService) :
     RecyclerView.Adapter<MartyrListAdapter.ViewHolder>() {
+
+    var martyrOnClickListener: MartyrOnClickListener? = null
 
     var martyrs = ArrayList<Data>()
         set(value) {
@@ -25,13 +26,16 @@ class MartyrListAdapter(val imageLoadingService: ImageLoadingService) :
         val fatherName = itemView.findViewById<TextView>(R.id.fatherName)
         val birthDate = itemView.findViewById<TextView>(R.id.birthDate)
         val martyrDate = itemView.findViewById<TextView>(R.id.martyrDate)
-        val martyrImage: MartyrImageView = itemView.findViewById(R.id.martyrImage)
+        val martyrImage: MartyrImageView = itemView.findViewById(R.id.martyrsImage)
         fun bind(data: Data) {
             fullName.text = data.fullName
             fatherName.text = data.fatherFirstName
             birthDate.text = data.birthDate
             martyrDate.text = data.martyrDate
             imageLoadingService.loadImage(martyrImage, data.photoUrl)
+            itemView.setOnClickListener {
+                martyrOnClickListener?.martyrClick(data)
+            }
         }
     }
 
@@ -43,4 +47,9 @@ class MartyrListAdapter(val imageLoadingService: ImageLoadingService) :
 
     override fun getItemCount(): Int = martyrs.size
 
+    interface MartyrOnClickListener {
+        fun martyrClick(data: Data)
+    }
+
 }
+

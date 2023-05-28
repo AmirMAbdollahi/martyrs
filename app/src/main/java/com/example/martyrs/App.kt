@@ -1,10 +1,12 @@
 package com.example.martyrs
 
 import android.app.Application
+import android.os.Bundle
 import com.example.martyrs.data.repository.DataSource.MartyrDataSource
 import com.example.martyrs.data.repository.DataSource.MartyrRemoteDataSource
 import com.example.martyrs.data.repository.MartyrRepository
 import com.example.martyrs.data.repository.MartyrRepositoryImpl
+import com.example.martyrs.feature.Martyr.MartyrViewModel
 import com.example.martyrs.feature.main.MainViewModel
 import com.example.martyrs.services.FrescoImageLoadingService
 import com.example.martyrs.services.ImageLoadingService
@@ -31,6 +33,7 @@ class App : Application() {
             single<ImageLoadingService> { FrescoImageLoadingService() }
             factory<MartyrRepository> { MartyrRepositoryImpl(MartyrRemoteDataSource(get())) }
             viewModel { MainViewModel(get()) }
+            viewModel { (bundle: Bundle) -> MartyrViewModel(bundle) }
         }
         startKoin {
             androidContext(this@App)

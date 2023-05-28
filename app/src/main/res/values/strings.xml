@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">شهدای مسجد صفاری</string>
+
     <string name="fullName">نام و نام خانوادگی</string>
     <string name="fatherName">نام پدر</string>
     <string name="birthDate">تاریخ تولد</string>
     <string name="martyrDate">تاریخ شهادت</string>
+    <string name="age">سن</string>
+    <string name="burialPlace">محل دفن</string>
+    <string name="marriage">وضعیت تاهل</string>
+    <string name="bio">بایوگرافی</string>
+    <string name="missionName">نام عملیات</string>
+    <string name="martyrPlace">محل شهادت</string>
+    <string name="job">شغل</string>
+    <string name="noInformation">اطلاعاتی ثبت نشده</string>
+    <string name="viewAndeAddComment">مشاهده و ثبت نظر</string>
 </resources>

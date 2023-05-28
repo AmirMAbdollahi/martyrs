@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <com.example.martyrs.view.MartyrImageView
-            android:id="@+id/martyrImage"
+            android:id="@+id/martyrsImage"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="8dp"
@@ -37,7 +37,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="@string/fullName"
-            app:layout_constraintStart_toEndOf="@+id/martyrImage"
+            app:layout_constraintStart_toEndOf="@+id/martyrsImage"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
