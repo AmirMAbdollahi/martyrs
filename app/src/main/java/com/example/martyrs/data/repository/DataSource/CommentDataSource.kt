@@ -1,10 +1,10 @@
-package com.example.martyrs.data.repository
+package com.example.martyrs.data.repository.DataSource
 
 import com.example.martyrs.data.Comment
+import com.example.martyrs.data.ResultComment
 import io.reactivex.Single
 
-interface CommentRepository {
-
+interface CommentDataSource {
     fun getComment(martyrId: Int): Single<Comment>
 
     fun addComment(
@@ -14,5 +14,4 @@ interface CommentRepository {
         phoneNumber: Int,
         martyrId: Int
     )
-
 }

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_info">
 
     <TextView
         android:id="@+id/name"
@@ -12,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        tools:text="امیر محمد عبداللهی"
         android:textAppearance="?textAppearanceBody1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="امیر محمد عبداللهی" />
 
     <TextView
         android:id="@+id/content"
@@ -40,8 +41,8 @@
         android:layout_marginEnd="16dp"
         android:textAppearance="?textAppearanceBody2"
         android:textColor="?android:textColorSecondary"
-        tools:text="۳/۴/۵"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="۳/۴/۵" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

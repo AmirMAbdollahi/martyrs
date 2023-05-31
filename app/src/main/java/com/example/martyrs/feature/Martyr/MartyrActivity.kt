@@ -1,8 +1,12 @@
 package com.example.martyrs.feature.Martyr
 
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.martyrs.R
 import com.example.martyrs.common.BaseActivity
+import com.example.martyrs.data.DataComment
+import com.example.martyrs.feature.Martyr.comment.CommentListAdapter
 import com.example.martyrs.services.ImageLoadingService
 import com.example.martyrs.view.scroll.ObservableScrollViewCallbacks
 import com.example.martyrs.view.scroll.ScrollState
@@ -16,6 +20,7 @@ import timber.log.Timber
 class MartyrActivity : BaseActivity() {
     val martyrViewModel: MartyrViewModel by viewModel { parametersOf(intent.extras) }
     val imageLoadingService: ImageLoadingService by inject()
+    val commentListAdapter: CommentListAdapter = CommentListAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_martyr)
@@ -62,27 +67,16 @@ class MartyrActivity : BaseActivity() {
             toolbarTitleTv.text = it.fullName
         }
 
-        martyrImage.post {
-            val productIvHeight = martyrImage.height
-            val toolbar = toolbarView
-            val productImageView = martyrImage
-            observableScrollView.addScrollViewCallbacks(object : ObservableScrollViewCallbacks {
-                override fun onScrollChanged(
-                    scrollY: Int,
-                    firstScroll: Boolean,
-                    dragging: Boolean
-                ) {
-                    toolbar.alpha = scrollY.toFloat() / productIvHeight.toFloat()
-                    productImageView.translationY = scrollY.toFloat() / 2
-                }
+        commentsRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
-                override fun onDownMotionEvent() {
-                }
+        commentsRv.adapter = commentListAdapter
 
-                override fun onUpOrCancelMotionEvent(scrollState: ScrollState?) {
-                }
-
-            })
+        martyrViewModel.commentLiveData.observe(this) {
+            Timber.i(it.toString())
+            commentListAdapter.commentList = it as ArrayList<DataComment>
+        }
+        martyrViewModel.totalCountLiveData.observe(this) {
+            totalCountComment.text = it.toString()
         }
 
     }

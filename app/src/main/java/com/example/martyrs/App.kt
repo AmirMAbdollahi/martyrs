@@ -2,7 +2,9 @@ package com.example.martyrs
 
 import android.app.Application
 import android.os.Bundle
-import com.example.martyrs.data.repository.DataSource.MartyrDataSource
+import com.example.martyrs.data.repository.CommentRepository
+import com.example.martyrs.data.repository.CommentRepositoryImpl
+import com.example.martyrs.data.repository.DataSource.CommentRemoteDataSource
 import com.example.martyrs.data.repository.DataSource.MartyrRemoteDataSource
 import com.example.martyrs.data.repository.MartyrRepository
 import com.example.martyrs.data.repository.MartyrRepositoryImpl
@@ -18,7 +20,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import timber.log.Timber
-import java.util.Timer
 
 class App : Application() {
 
@@ -32,8 +33,9 @@ class App : Application() {
             single<ApiService> { createApiServiceInstance() }
             single<ImageLoadingService> { FrescoImageLoadingService() }
             factory<MartyrRepository> { MartyrRepositoryImpl(MartyrRemoteDataSource(get())) }
+            factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
             viewModel { MainViewModel(get()) }
-            viewModel { (bundle: Bundle) -> MartyrViewModel(bundle) }
+            viewModel { (bundle: Bundle) -> MartyrViewModel(bundle, get()) }
         }
         startKoin {
             androidContext(this@App)
