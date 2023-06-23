@@ -1,7 +1,7 @@
 package com.example.martyrs.data.repository.DataSource
 
 import com.example.martyrs.data.Comment
-import com.example.martyrs.data.ResultComment
+import com.example.martyrs.data.ResultAddComment
 import io.reactivex.Single
 
 interface CommentDataSource {
@@ -11,7 +11,7 @@ interface CommentDataSource {
         text: String,
         firstName: String,
         lastName: String,
-        phoneNumber: Int,
+        phoneNumber: String,
         martyrId: Int
-    )
+    ): Single<ResultAddComment>
 }

@@ -7,12 +7,13 @@ import com.example.martyrs.common.EXTRA_KEY_DATA
 import com.example.martyrs.data.Comment
 import com.example.martyrs.data.Data
 import com.example.martyrs.data.DataComment
-import com.example.martyrs.data.ResultComment
 import com.example.martyrs.data.repository.CommentRepository
+import com.google.android.material.textfield.TextInputEditText
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Response
 import timber.log.Timber
 
 class MartyrViewModel(bundle: Bundle, val commentRepository: CommentRepository) : BaseViewModel() {
@@ -23,6 +24,10 @@ class MartyrViewModel(bundle: Bundle, val commentRepository: CommentRepository) 
 
     init {
         martyrLiveData.value = bundle.getParcelable(EXTRA_KEY_DATA)
+        getComment()
+    }
+
+    fun getComment() {
         commentRepository.getComment(martyrLiveData.value!!.martyrId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -41,7 +46,7 @@ class MartyrViewModel(bundle: Bundle, val commentRepository: CommentRepository) 
                 }
 
             })
-
     }
+
 
 }

@@ -2,15 +2,14 @@ package com.example.martyrs.services.http
 
 import com.example.martyrs.data.Comment
 import com.example.martyrs.data.Martyr
-import com.example.martyrs.data.ResultComment
+import com.example.martyrs.data.ResultAddComment
+import com.google.gson.JsonObject
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -23,20 +22,25 @@ interface ApiService {
     @GET("comment/list/{martyrId}")
     fun getComment(
         @Path("martyrId") martyrId: Int
-    ):Single<Comment>
+    ): Single<Comment>
+
+    @POST("comment/create")
+    fun addComment(@Body jsonObject: JsonObject)
+    : Single<ResultAddComment>
 
 }
 
 fun createApiServiceInstance(): ApiService {
-//    val okHttpClient = OkHttpClient.Builder()
-//        .addInterceptor {
-//            val oldRequest = it.request()
-//            val newRequestBuilder = oldRequest.newBuilder()
-//            newRequestBuilder.addHeader("content-type", "application/json")
-//            newRequestBuilder.method(oldRequest.method(), oldRequest.body())
-//            return@addInterceptor it.proceed(newRequestBuilder.build())
-//        }
-//        .build()
+    val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor {
+            val oldRequest = it.request()
+            val newRequestBuilder = oldRequest.newBuilder()
+            newRequestBuilder.addHeader("accept", "*/*")
+            newRequestBuilder.addHeader("Content-Type", "application/json")
+            newRequestBuilder.method(oldRequest.method(), oldRequest.body())
+            return@addInterceptor it.proceed(newRequestBuilder.build())
+        }
+        .build()
 
 
     val retrofit = Retrofit.Builder()

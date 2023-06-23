@@ -9,6 +9,7 @@ import com.example.martyrs.data.repository.DataSource.MartyrRemoteDataSource
 import com.example.martyrs.data.repository.MartyrRepository
 import com.example.martyrs.data.repository.MartyrRepositoryImpl
 import com.example.martyrs.feature.Martyr.MartyrViewModel
+import com.example.martyrs.feature.Martyr.comment.AddCommentViewModel
 import com.example.martyrs.feature.main.MainViewModel
 import com.example.martyrs.services.FrescoImageLoadingService
 import com.example.martyrs.services.ImageLoadingService
@@ -36,6 +37,7 @@ class App : Application() {
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
             viewModel { MainViewModel(get()) }
             viewModel { (bundle: Bundle) -> MartyrViewModel(bundle, get()) }
+            viewModel { AddCommentViewModel(get()) }
         }
         startKoin {
             androidContext(this@App)

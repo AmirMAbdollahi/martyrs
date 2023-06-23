@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/firstNameEtl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/firstNameEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:hint="@string/firstName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lastNameEtl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/lastNameEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:hint="@string/lastName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneNumberEtl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneNumberEt"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:hint="@string/phoneNumber" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/commentEtl"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/commentEt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start|top"
+            android:textAppearance="?textAppearanceHeadline6"
+            android:hint="@string/commentText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

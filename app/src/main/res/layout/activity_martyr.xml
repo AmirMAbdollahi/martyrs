@@ -400,37 +400,48 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal">
+                android:layout_marginBottom="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
+                    android:layout_marginStart="32dp"
                     android:text="@string/comments"
-                    android:textAppearance="?textAppearanceHeadline6" />
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/totalCountComment"
-                    android:textAppearance="?textAppearanceHeadline6" />
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/totalCountComment"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/totalCountComment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    tools:text="0"
-                    android:textAppearance="?textAppearanceHeadline6" />
-            </LinearLayout>
+                    android:layout_marginEnd="32dp"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/commentsRv"
@@ -458,8 +469,8 @@
             android:layout_marginStart="16dp"
             android:background="?selectableItemBackgroundBorderless"
             app:srcCompat="@drawable/ic_back" />
-
     </FrameLayout>
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/toolbarView"
@@ -479,7 +490,6 @@
             tools:text="نام شهید" />
     </com.google.android.material.card.MaterialCardView>
 
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/addComment"
         android:layout_width="match_parent"
@@ -489,6 +499,6 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="@string/addComment" />
+        android:text="@string/addCommentDialog" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

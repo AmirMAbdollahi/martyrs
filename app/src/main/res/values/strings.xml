@@ -13,7 +13,14 @@
     <string name="martyrPlace">محل شهادت</string>
     <string name="job">شغل</string>
     <string name="noInformation">اطلاعاتی ثبت نشده</string>
-    <string name="addComment">ثبت نظر</string>
+    <string name="addCommentDialog">ثبت نظر</string>
     <string name="comments">نظرات کاربران</string>
+    <string name="firstName">نام</string>
+    <string name="lastName">نام خانوادگی</string>
+    <string name="phoneNumber">شماره تلفن (شماره شما نمایش داده نخواهد شد)</string>
+    <string name="commentText">کامنت</string>
+    <string name="addComment">اضافه کردن کامنت</string>
+    <string name="cancel">انصراف</string>
     <string name="totalCountComment">تعداد نظرات:</string>
+
 </resources>

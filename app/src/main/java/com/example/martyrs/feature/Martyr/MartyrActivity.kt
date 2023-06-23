@@ -1,11 +1,14 @@
 package com.example.martyrs.feature.Martyr
 
 import android.os.Bundle
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.martyrs.R
 import com.example.martyrs.common.BaseActivity
+import com.example.martyrs.common.EXTRA_KEY_ID
 import com.example.martyrs.data.DataComment
+import com.example.martyrs.feature.Martyr.comment.AddCommentFragment
 import com.example.martyrs.feature.Martyr.comment.CommentListAdapter
 import com.example.martyrs.services.ImageLoadingService
 import com.example.martyrs.view.scroll.ObservableScrollViewCallbacks
@@ -17,7 +20,7 @@ import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 
-class MartyrActivity : BaseActivity() {
+class MartyrActivity : BaseActivity(),AddCommentFragment.NoticeDialogListener {
     val martyrViewModel: MartyrViewModel by viewModel { parametersOf(intent.extras) }
     val imageLoadingService: ImageLoadingService by inject()
     val commentListAdapter: CommentListAdapter = CommentListAdapter()
@@ -67,17 +70,67 @@ class MartyrActivity : BaseActivity() {
             toolbarTitleTv.text = it.fullName
         }
 
+        backBtn.setOnClickListener {
+            finish()
+        }
+
+        martyrImage.post {
+            val martyrIvHeight = martyrImage.height
+            val toolbar = toolbarView
+            val martyrImageView = martyrImage
+            observableScrollView.addScrollViewCallbacks(object : ObservableScrollViewCallbacks {
+                override fun onScrollChanged(
+                    scrollY: Int,
+                    firstScroll: Boolean,
+                    dragging: Boolean
+                ) {
+                    toolbar.alpha = scrollY.toFloat() / martyrIvHeight.toFloat()
+                    martyrImageView.translationY = scrollY.toFloat() / 2
+                }
+
+                override fun onDownMotionEvent() {
+                }
+
+                override fun onUpOrCancelMotionEvent(scrollState: ScrollState?) {
+                }
+
+            })
+        }
+
+
         commentsRv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
-        commentsRv.adapter = commentListAdapter
+
+        addComment.setOnClickListener {
+            val addCommentDialog = AddCommentFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(EXTRA_KEY_ID, martyrViewModel.martyrLiveData.value!!.martyrId)
+                }
+            }
+            addCommentDialog.show(supportFragmentManager, null)
+        }
 
         martyrViewModel.commentLiveData.observe(this) {
             Timber.i(it.toString())
             commentListAdapter.commentList = it as ArrayList<DataComment>
         }
+        commentsRv.adapter = commentListAdapter
         martyrViewModel.totalCountLiveData.observe(this) {
             totalCountComment.text = it.toString()
         }
 
     }
+
+    override fun onDialogDismiss() {
+        martyrViewModel.getComment()
+        martyrViewModel.commentLiveData.observe(this) {
+            Timber.i(it.toString())
+            commentListAdapter.commentList = it as ArrayList<DataComment>
+        }
+        commentsRv.adapter = commentListAdapter
+        martyrViewModel.totalCountLiveData.observe(this) {
+            totalCountComment.text = it.toString()
+        }
+    }
+
 }
