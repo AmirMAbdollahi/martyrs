@@ -42,6 +42,17 @@ interface BaseView {
             }
         }
     }
+
+    fun showEmptyState(layoutResId: Int): View? {
+        rootView?.let {
+            viewContext?.let { context ->
+                var emptyState = it.findViewById<View>(R.id.emptyView)
+                emptyState.visibility = View.VISIBLE
+                return emptyState
+            }
+        }
+        return null
+    }
 }
 
 abstract class BaseViewModel : ViewModel() {

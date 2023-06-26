@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface MartyrDataSource {
 
-    fun getMartyrs(pageSize: Int, pageNumber: Int): Single<Martyr>
+    fun getMartyrs(pageSize: Int, pageNumber: Int, searchText: String?): Single<Martyr>
 
 }

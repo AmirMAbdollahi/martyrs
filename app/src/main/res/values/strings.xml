@@ -22,5 +22,7 @@
     <string name="addComment">اضافه کردن کامنت</string>
     <string name="cancel">انصراف</string>
     <string name="totalCountComment">تعداد نظرات:</string>
+    <string name="searchMartyr">نام شهید مورد نظر خود را وارد کنید.</string>
+    <string name="searchMartyrNotExist">شهیدی با این نام وجود ندارد.</string>
 
 </resources>

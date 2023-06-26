@@ -16,7 +16,8 @@ interface ApiService {
     @GET("martyr/list")
     fun getMartyrs(
         @Query("PaginationRequestDto.PageSize") pageSize: Int,
-        @Query("PaginationRequestDto.PageNumber") pageNumber: Int
+        @Query("PaginationRequestDto.PageNumber") pageNumber: Int,
+        @Query("SearchText") searchText: String? = null
     ): Single<Martyr>
 
     @GET("comment/list/{martyrId}")
@@ -26,7 +27,7 @@ interface ApiService {
 
     @POST("comment/create")
     fun addComment(@Body jsonObject: JsonObject)
-    : Single<ResultAddComment>
+            : Single<ResultAddComment>
 
 }
 

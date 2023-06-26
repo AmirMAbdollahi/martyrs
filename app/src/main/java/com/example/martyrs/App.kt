@@ -8,9 +8,7 @@ import com.example.martyrs.data.repository.DataSource.CommentRemoteDataSource
 import com.example.martyrs.data.repository.DataSource.MartyrRemoteDataSource
 import com.example.martyrs.data.repository.MartyrRepository
 import com.example.martyrs.data.repository.MartyrRepositoryImpl
-import com.example.martyrs.feature.Martyr.MartyrViewModel
 import com.example.martyrs.feature.Martyr.comment.AddCommentViewModel
-import com.example.martyrs.feature.main.MainViewModel
 import com.example.martyrs.services.FrescoImageLoadingService
 import com.example.martyrs.services.ImageLoadingService
 import com.example.martyrs.services.http.ApiService
@@ -35,8 +33,17 @@ class App : Application() {
             single<ImageLoadingService> { FrescoImageLoadingService() }
             factory<MartyrRepository> { MartyrRepositoryImpl(MartyrRemoteDataSource(get())) }
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
-            viewModel { MainViewModel(get()) }
-            viewModel { (bundle: Bundle) -> MartyrViewModel(bundle, get()) }
+            viewModel { (context: String) ->
+                com.example.martyrs.feature.common.MartyrsViewModel(
+                    context, get()
+                )
+            }
+            viewModel { (bundle: Bundle) ->
+                com.example.martyrs.feature.Martyr.MartyrViewModel(
+                    bundle,
+                    get()
+                )
+            }
             viewModel { AddCommentViewModel(get()) }
         }
         startKoin {
