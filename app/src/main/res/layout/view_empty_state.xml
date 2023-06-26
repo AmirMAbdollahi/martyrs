@@ -17,10 +17,10 @@
             android:gravity="center_horizontal"
             android:textAppearance="?textAppearanceHeadline5"
             android:textStyle="normal"
-            tools:text="لطفا نام شهید مورد نظر خود را جستوجو کنید"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="لطفا نام شهید مورد نظر خود را جستوجو کنید" />
 
 
         <ImageView
@@ -33,7 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ghasemsol" />
+            app:srcCompat="@drawable/hag_ghasem" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
