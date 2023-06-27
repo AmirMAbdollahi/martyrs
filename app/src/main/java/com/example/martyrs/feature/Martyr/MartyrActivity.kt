@@ -1,7 +1,7 @@
 package com.example.martyrs.feature.Martyr
 
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.martyrs.R
@@ -20,7 +20,7 @@ import org.koin.core.parameter.parametersOf
 import timber.log.Timber
 
 
-class MartyrActivity : BaseActivity(),AddCommentFragment.NoticeDialogListener {
+class MartyrActivity : BaseActivity(), AddCommentFragment.NoticeDialogListener {
     val martyrViewModel: MartyrViewModel by viewModel { parametersOf(intent.extras) }
     val imageLoadingService: ImageLoadingService by inject()
     val commentListAdapter: CommentListAdapter = CommentListAdapter()
@@ -119,6 +119,18 @@ class MartyrActivity : BaseActivity(),AddCommentFragment.NoticeDialogListener {
             totalCountComment.text = it.toString()
         }
 
+        martyrViewModel.commentEmptyState.observe(this) {
+            // TODO: back here
+            if (it.mustShow) {
+                showEmptyState(it.mustShow, getString(it.messageResId))
+                commentsRv.visibility = View.GONE
+            } else {
+                showEmptyState(it.mustShow)
+                commentsRv.visibility = View.VISIBLE
+            }
+        }
+
+
     }
 
     override fun onDialogDismiss() {
@@ -129,6 +141,10 @@ class MartyrActivity : BaseActivity(),AddCommentFragment.NoticeDialogListener {
         }
         commentsRv.adapter = commentListAdapter
         martyrViewModel.totalCountLiveData.observe(this) {
+            if (it != 0) {
+                showEmptyState(false)
+                commentsRv.visibility = View.VISIBLE
+            }
             totalCountComment.text = it.toString()
         }
     }

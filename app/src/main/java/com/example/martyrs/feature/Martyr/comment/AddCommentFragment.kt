@@ -73,6 +73,7 @@ class AddCommentFragment : DialogFragment() {
                             phoneNumber!!.text.toString(),
                             martyrId!!
                         )
+                        // TODO: back here
                         Thread.sleep(1000)
                         listener.onDialogDismiss()
                     })

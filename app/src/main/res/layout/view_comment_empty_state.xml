@@ -3,28 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="80dp">
+
 
         <TextView
             android:id="@+id/emptyStateMessageTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center_horizontal"
             android:textAppearance="?textAppearanceHeadline5"
             android:textStyle="normal"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:text="لطفا نام شهید مورد نظر خود را جستوجو کنید" />
-
+            app:layout_constraintTop_toBottomOf="@+id/emptyImage"
+            tools:text="کامنتی وجود ندارد." />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/emptyImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_anchor="@+id/constraintLayout"
@@ -33,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/hag_ghasem" />
+            app:srcCompat="@drawable/ic_no_data" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

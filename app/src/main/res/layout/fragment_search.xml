@@ -46,7 +46,7 @@
 
     <include
         android:id="@+id/emptyView"
-        layout="@layout/view_empty_state"
+        layout="@layout/view_search_empty_state"
         android:visibility="gone" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

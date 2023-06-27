@@ -24,5 +24,6 @@
     <string name="totalCountComment">تعداد نظرات:</string>
     <string name="searchMartyr">نام شهید مورد نظر خود را وارد کنید.</string>
     <string name="searchMartyrNotExist">شهیدی با این نام وجود ندارد.</string>
+    <string name="commentNotExist">کامنتی وجود ندارد.</string>
 
 </resources>

@@ -2,11 +2,13 @@ package com.example.martyrs.feature.Martyr
 
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
+import com.example.martyrs.R
 import com.example.martyrs.common.BaseViewModel
 import com.example.martyrs.common.EXTRA_KEY_DATA
 import com.example.martyrs.data.Comment
 import com.example.martyrs.data.Data
 import com.example.martyrs.data.DataComment
+import com.example.martyrs.data.EmptyState
 import com.example.martyrs.data.repository.CommentRepository
 import com.google.android.material.textfield.TextInputEditText
 import io.reactivex.SingleObserver
@@ -21,6 +23,7 @@ class MartyrViewModel(bundle: Bundle, val commentRepository: CommentRepository) 
     val martyrLiveData = MutableLiveData<Data>()
     val commentLiveData = MutableLiveData<List<DataComment>>()
     val totalCountLiveData = MutableLiveData<Int>()
+    val commentEmptyState = MutableLiveData<EmptyState>()
 
     init {
         martyrLiveData.value = bundle.getParcelable(EXTRA_KEY_DATA)
@@ -37,7 +40,12 @@ class MartyrViewModel(bundle: Bundle, val commentRepository: CommentRepository) 
                 }
 
                 override fun onSuccess(t: Comment) {
-                    commentLiveData.value = t.result.data
+                    if (t.result.totalCount == 0) {
+                        commentEmptyState.value = EmptyState(true, R.string.commentNotExist)
+                    } else {
+                        commentLiveData.value = t.result.data
+                        commentEmptyState.value = EmptyState(false)
+                    }
                     totalCountLiveData.value = t.result.totalCount
                 }
 

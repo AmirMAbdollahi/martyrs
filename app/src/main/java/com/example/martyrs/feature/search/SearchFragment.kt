@@ -15,7 +15,7 @@ import com.example.martyrs.data.EmptyState
 import com.example.martyrs.feature.common.MartyrsViewModel
 import com.example.martyrs.feature.main.MartyrListAdapter
 import kotlinx.android.synthetic.main.fragment_search.*
-import kotlinx.android.synthetic.main.view_empty_state.view.*
+import kotlinx.android.synthetic.main.view_search_empty_state.view.*
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -60,10 +60,12 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
 
 
         viewModel.martyrEmptyStateLiveData.observe(viewLifecycleOwner) {
-            showMartyrEmptyState(it)
+            // TODO: back here
             if (it.mustShow) {
+                showEmptyState(it.mustShow, getString(it.messageResId))
                 searchRv.visibility = View.GONE
             } else {
+                showEmptyState(it.mustShow)
                 searchRv.visibility = View.VISIBLE
             }
         }
@@ -78,16 +80,6 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
 //        }
     }
 
-    private fun showMartyrEmptyState(emptyState: EmptyState) {
-        if (emptyState.mustShow) {
-            val emptyStateView = showEmptyState(R.layout.view_empty_state)
-            emptyStateView?.let { view ->
-                view.emptyStateMessageTv.text = getString(emptyState.messageResId)
-            }
-        } else {
-            emptyView?.visibility = View.GONE
-        }
-    }
 
     override fun martyrClick(data: Data) {
 //        startActivity(Intent(this, MartyrActivity::class.java).apply {

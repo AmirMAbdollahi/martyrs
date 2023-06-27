@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.martyrs.R
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.view_comment_empty_state.view.*
 
 abstract class BaseFragment : Fragment(), BaseView {
     override val rootView: CoordinatorLayout?
@@ -43,15 +44,22 @@ interface BaseView {
         }
     }
 
-    fun showEmptyState(layoutResId: Int): View? {
+    fun showEmptyState(mustShow: Boolean, messageEmptyState: String = "No String") {
         rootView?.let {
             viewContext?.let { context ->
-                var emptyState = it.findViewById<View>(R.id.emptyView)
-                emptyState.visibility = View.VISIBLE
-                return emptyState
+                val emptyStateLayout = it.findViewById<View>(R.id.emptyView)
+                if (mustShow) {
+                    emptyStateLayout.visibility = View.VISIBLE
+                    emptyStateLayout?.let { view ->
+                        view.emptyStateMessageTv.text = messageEmptyState
+                    }
+                } else {
+                    emptyStateLayout?.visibility = View.GONE
+                }
+
             }
         }
-        return null
+
     }
 }
 
