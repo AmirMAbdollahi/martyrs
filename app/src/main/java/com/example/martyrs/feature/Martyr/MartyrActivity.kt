@@ -43,6 +43,7 @@ class MartyrActivity : BaseActivity(), AddCommentFragment.NoticeDialogListener {
 
         martyrViewModel.martyrLiveData.observe(this) {
             Timber.i(it.toString())
+            // TODO: back here (image)
             imageLoadingService.loadImage(martyrImage, it.photoUrl)
             fullName.text = it.fullName
             fatherName.text = it.fatherFirstName
@@ -120,7 +121,7 @@ class MartyrActivity : BaseActivity(), AddCommentFragment.NoticeDialogListener {
         }
 
         martyrViewModel.commentEmptyState.observe(this) {
-            // TODO: back here
+            // TODO: back here (getString)
             if (it.mustShow) {
                 showEmptyState(it.mustShow, getString(it.messageResId))
                 commentsRv.visibility = View.GONE

@@ -24,6 +24,7 @@ class MartyrsViewModel(val context: String, val martyrRepository: MartyrReposito
 
     fun searchMartyr(query: String?) {
         progressBarLiveData.value = true
+        // TODO: back here (pagination)
         martyrRepository.getMartyrs(150, 1, query)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

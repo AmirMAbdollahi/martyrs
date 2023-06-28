@@ -1,6 +1,7 @@
 package com.example.martyrs.feature.search
 
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -11,15 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.martyrs.R
 import com.example.martyrs.common.BaseFragment
 import com.example.martyrs.data.Data
-import com.example.martyrs.data.EmptyState
 import com.example.martyrs.feature.common.MartyrsViewModel
 import com.example.martyrs.feature.main.MartyrListAdapter
 import kotlinx.android.synthetic.main.fragment_search.*
-import kotlinx.android.synthetic.main.view_search_empty_state.view.*
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
+@Suppress("DEPRECATION")
 class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +33,11 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val handler = Handler()
+        val searchRunnable = Runnable {
+            viewModel.searchMartyr(etSearch.text.toString())
+        }
+
         etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -43,9 +48,11 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if (s !== null) {
-                    viewModel.searchMartyr(s.toString())
-                }
+                handler.removeCallbacks(searchRunnable)
+//                if (s !== null) {
+//                    viewModel.searchMartyr(s.toString())
+//                }
+                handler.postDelayed(searchRunnable, 1000)
             }
 
         })
@@ -60,7 +67,7 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
 
 
         viewModel.martyrEmptyStateLiveData.observe(viewLifecycleOwner) {
-            // TODO: back here
+            // TODO: back here (getString)
             if (it.mustShow) {
                 showEmptyState(it.mustShow, getString(it.messageResId))
                 searchRv.visibility = View.GONE

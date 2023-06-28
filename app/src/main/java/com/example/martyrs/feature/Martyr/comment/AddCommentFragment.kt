@@ -56,6 +56,7 @@ class AddCommentFragment : DialogFragment() {
             // Get the layout inflater
             val inflater = requireActivity().layoutInflater;
             val v: View = inflater.inflate(R.layout.dialog_add_comment, null)
+            // TODO: bake here (add permission)
             val firstName = v.findViewById<TextInputEditText>(R.id.firstNameEt)
             val lastName = v.findViewById<TextInputEditText>(R.id.lastNameEt)
             val phoneNumber = v.findViewById<TextInputEditText>(R.id.phoneNumberEt)
@@ -73,7 +74,7 @@ class AddCommentFragment : DialogFragment() {
                             phoneNumber!!.text.toString(),
                             martyrId!!
                         )
-                        // TODO: back here
+                        // TODO: back here (sleep 1000)
                         Thread.sleep(1000)
                         listener.onDialogDismiss()
                     })
