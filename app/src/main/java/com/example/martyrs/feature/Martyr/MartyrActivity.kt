@@ -46,29 +46,37 @@ class MartyrActivity : BaseActivity(), AddCommentFragment.NoticeDialogListener {
             // TODO: back here (image)
             imageLoadingService.loadImage(martyrImage, it.photoUrl)
             fullName.text = it.fullName
-            fatherName.text = it.fatherFirstName
-            birthDate.text = it.birthDate
-            martyrDate.text = it.martyrDate
-            age.text = it.age.toString()
-            if (!burialPlace.text.isNullOrEmpty())
+            toolbarTitleTv.text = it.fullName
+            if (it.age!=0)
+                age.text = it.age.toString()
+            else age.text = getString(R.string.noInformation)
+            if (!it.fatherFirstName.isNullOrEmpty())
+                fatherName.text = it.fatherFirstName
+            else fatherName.text = getString(R.string.noInformation)
+            if (!it.birthDate.isNullOrEmpty())
+                birthDate.text = it.birthDate
+            else birthDate.text = getString(R.string.noInformation)
+            if (!it.martyrDate.isNullOrEmpty())
+                martyrDate.text = it.martyrDate
+            else martyrDate.text = getString(R.string.noInformation)
+            if (!it.burialPlace.isNullOrEmpty())
                 burialPlace.text = it.burialPlace
             else burialPlace.text = getString(R.string.noInformation)
-            if (!marriage.text.isNullOrEmpty())
+            if (!it.marriage.isNullOrEmpty())
                 marriage.text = it.marriage
             else marriage.text = getString(R.string.noInformation)
-            if (!bio.text.isNullOrEmpty())
+            if (!it.bio.isNullOrEmpty())
                 bio.text = it.bio
             else bio.text = getString(R.string.noInformation)
-            if (!missionName.text.isNullOrEmpty())
+            if (!it.missionName.isNullOrEmpty())
                 missionName.text = it.missionName
             else missionName.text = getString(R.string.noInformation)
-            if (!martyrPlace.text.isNullOrEmpty())
+            if (!it.martyrPlace.isNullOrEmpty())
                 martyrPlace.text = it.martyrPlace
             else martyrPlace.text = getString(R.string.noInformation)
-            if (!job.text.isNullOrEmpty())
+            if (!it.job.isNullOrEmpty())
                 job.text = it.job
             else job.text = getString(R.string.noInformation)
-            toolbarTitleTv.text = it.fullName
         }
 
         backBtn.setOnClickListener {

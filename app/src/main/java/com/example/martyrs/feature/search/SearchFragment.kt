@@ -1,5 +1,6 @@
 package com.example.martyrs.feature.search
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -11,13 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.martyrs.R
 import com.example.martyrs.common.BaseFragment
+import com.example.martyrs.common.EXTRA_KEY_DATA
 import com.example.martyrs.data.Data
+import com.example.martyrs.feature.Martyr.MartyrActivity
 import com.example.martyrs.feature.common.MartyrsViewModel
 import com.example.martyrs.feature.main.MartyrListAdapter
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.android.ext.android.get
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
+import timber.log.Timber
 
 @Suppress("DEPRECATION")
 class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
@@ -65,6 +69,7 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
         val martyrListAdapter = MartyrListAdapter(get())
         searchRv.adapter = martyrListAdapter
 
+        martyrListAdapter.martyrOnClickListener = this
 
         viewModel.martyrEmptyStateLiveData.observe(viewLifecycleOwner) {
             // TODO: back here (getString)
@@ -81,16 +86,16 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
             martyrListAdapter.martyrs = it.result.data as ArrayList<Data>
         }
 
-
-//        backBtn.setOnClickListener {
-//
-//        }
+        backBtn.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
 
 
     override fun martyrClick(data: Data) {
-//        startActivity(Intent(this, MartyrActivity::class.java).apply {
-//            putExtra(EXTRA_KEY_DATA, data)
-//        })
+        Timber.i("sdfa")
+        startActivity(Intent(activity, MartyrActivity::class.java).apply {
+            putExtra(EXTRA_KEY_DATA, data)
+        })
     }
 }
