@@ -33,13 +33,13 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
-    val viewModel: MartyrsViewModel by viewModel { parametersOf("search") }
+    val viewModel: MartyrsViewModel by viewModel ()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val handler = Handler()
         val searchRunnable = Runnable {
-            viewModel.searchMartyr(etSearch.text.toString())
+            viewModel.getOrSearchMartyr(etSearch.text.toString())
         }
 
         etSearch.addTextChangedListener(object : TextWatcher {
@@ -56,7 +56,7 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
 //                if (s !== null) {
 //                    viewModel.searchMartyr(s.toString())
 //                }
-                handler.postDelayed(searchRunnable, 1000)
+                handler.postDelayed(searchRunnable, 500)
             }
 
         })
@@ -93,7 +93,6 @@ class SearchFragment : BaseFragment(), MartyrListAdapter.MartyrOnClickListener {
 
 
     override fun martyrClick(data: Data) {
-        Timber.i("sdfa")
         startActivity(Intent(activity, MartyrActivity::class.java).apply {
             putExtra(EXTRA_KEY_DATA, data)
         })

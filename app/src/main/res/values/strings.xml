@@ -26,4 +26,15 @@
     <string name="searchMartyrNotExist">شهیدی با این نام وجود ندارد.</string>
     <string name="commentNotExist">کامنتی وجود ندارد.</string>
 
+    <string name="sort">مرتب سازی</string>
+    <string name="minAge">کوچک ترین</string>
+    <string name="maxAge">بزرگ ترین</string>
+    <string name="lastNameSort">حروف الفبا</string>
+
+    <string-array name="sortTitleArray">
+        <item>@string/minAge</item>
+        <item>@string/maxAge</item>
+        <item>@string/lastNameSort</item>
+    </string-array>
+
 </resources>

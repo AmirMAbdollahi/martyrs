@@ -33,9 +33,9 @@ class App : Application() {
             single<ImageLoadingService> { FrescoImageLoadingService() }
             factory<MartyrRepository> { MartyrRepositoryImpl(MartyrRemoteDataSource(get())) }
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
-            viewModel { (context: String) ->
+            viewModel {
                 com.example.martyrs.feature.common.MartyrsViewModel(
-                    context, get()
+                    get()
                 )
             }
             viewModel { (bundle: Bundle) ->
