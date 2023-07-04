@@ -6,7 +6,12 @@ import io.reactivex.Single
 
 class MartyrRemoteDataSource(val apiService: ApiService) : MartyrDataSource {
 
-    override fun getMartyrs(pageSize: Int, pageNumber: Int, searchText: String?): Single<Martyr> =
-        apiService.getMartyrs(pageSize, pageNumber, searchText)
+    override fun getMartyrs(
+        pageSize: Int,
+        pageNumber: Int,
+        searchText: String?,
+        sort: String
+    ): Single<Martyr> =
+        apiService.getMartyrs(pageSize, pageNumber, searchText, sort)
 
 }

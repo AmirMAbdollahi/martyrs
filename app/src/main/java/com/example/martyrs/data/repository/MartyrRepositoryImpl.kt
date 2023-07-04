@@ -6,7 +6,11 @@ import io.reactivex.Single
 
 class MartyrRepositoryImpl(val martyrDataSource: MartyrDataSource) : MartyrRepository {
 
-    override fun getMartyrs(pageSize: Int, pageNumber: Int, searchText: String?): Single<Martyr> =
-        martyrDataSource.getMartyrs(pageSize, pageNumber, searchText)
+    override fun getMartyrs(
+        pageSize: Int,
+        pageNumber: Int,
+        searchText: String?,
+        sort: String
+    ): Single<Martyr> = martyrDataSource.getMartyrs(pageSize, pageNumber, searchText, sort)
 
 }

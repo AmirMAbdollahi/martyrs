@@ -27,14 +27,26 @@
     <string name="commentNotExist">کامنتی وجود ندارد.</string>
 
     <string name="sort">مرتب سازی</string>
+    <string name="noSort" />
     <string name="minAge">کوچک ترین</string>
     <string name="maxAge">بزرگ ترین</string>
-    <string name="lastNameSort">حروف الفبا</string>
+    <string name="firstNameSort">حروف الفبا - نام</string>
+    <string name="lastNameSort">حروف الفبا - نام خانوادگی</string>
+
+    <string name="Null">--</string>
 
     <string-array name="sortTitleArray">
+        <item>@string/Null</item>
         <item>@string/minAge</item>
         <item>@string/maxAge</item>
+        <item>@string/firstNameSort</item>
         <item>@string/lastNameSort</item>
     </string-array>
+
+
+    <string name="MinAge">MinAge</string>
+    <string name="MaxAge">MaxAge</string>
+    <string name="FirstName">FirstName</string>
+    <string name="LastName">LastName</string>
 
 </resources>

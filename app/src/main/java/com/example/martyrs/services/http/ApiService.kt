@@ -17,7 +17,8 @@ interface ApiService {
     fun getMartyrs(
         @Query("PaginationRequestDto.PageSize") pageSize: Int,
         @Query("PaginationRequestDto.PageNumber") pageNumber: Int,
-        @Query("SearchText") searchText: String? = null
+        @Query("SearchText") searchText: String? = null,
+        @Query("SortBy") sort: String
     ): Single<Martyr>
 
     @GET("comment/list/{martyrId}")
