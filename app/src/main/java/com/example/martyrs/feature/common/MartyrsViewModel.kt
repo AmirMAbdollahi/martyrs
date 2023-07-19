@@ -5,7 +5,6 @@ import com.example.martyrs.R
 import com.example.martyrs.common.BaseViewModel
 import com.example.martyrs.data.EmptyState
 import com.example.martyrs.data.Martyr
-import com.example.martyrs.data.NO_SORT
 import com.example.martyrs.data.Sort
 import com.example.martyrs.data.repository.MartyrRepository
 import io.reactivex.SingleObserver
@@ -90,6 +89,26 @@ class MartyrsViewModel(var sort: Int, val martyrRepository: MartyrRepository) :
 
             })
     }
+
+//    val martyrLocalLiveData = MutableLiveData<Martyr>()
+//
+//    fun getLocalMartyrs() {
+//        martyrRepository.getMartyrsLocal().subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread()).subscribe(object : SingleObserver<Martyr> {
+//                override fun onSubscribe(d: Disposable) {
+//                    TODO("Not yet implemented")
+//                }
+//
+//                override fun onSuccess(t: Martyr) {
+//                    martyrLocalLiveData.value = t
+//                }
+//
+//                override fun onError(e: Throwable) {
+//                    TODO("Not yet implemented")
+//                }
+//
+//            })
+//    }
 
     fun onSelectedSortChangeByUser(sort: Int, query: String?) {
         this.sort = sort

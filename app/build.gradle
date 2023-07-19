@@ -37,6 +37,7 @@ android {
 dependencies {
 
     def koin_android_version= "3.3.2"
+    def room_version = "2.2.6"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -70,5 +71,10 @@ dependencies {
 
     //fresco
     implementation 'com.facebook.fresco:fresco:2.6.0'
+
+    //Room database
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
 
 }

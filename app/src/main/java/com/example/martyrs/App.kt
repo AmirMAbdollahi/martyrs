@@ -2,9 +2,12 @@ package com.example.martyrs
 
 import android.app.Application
 import android.os.Bundle
+import androidx.room.Room
+import com.example.martyrs.data.db.AppDatabase
 import com.example.martyrs.data.repository.CommentRepository
 import com.example.martyrs.data.repository.CommentRepositoryImpl
 import com.example.martyrs.data.repository.DataSource.CommentRemoteDataSource
+import com.example.martyrs.data.repository.DataSource.MartyrLocalDataSource
 import com.example.martyrs.data.repository.DataSource.MartyrRemoteDataSource
 import com.example.martyrs.data.repository.MartyrRepository
 import com.example.martyrs.data.repository.MartyrRepositoryImpl
@@ -30,9 +33,16 @@ class App : Application() {
 
         val myModules = module {
             single<ApiService> { createApiServiceInstance() }
+            //single { Room.databaseBuilder(this@App, AppDatabase::class.java, "db_app").build() }
             single<ImageLoadingService> { FrescoImageLoadingService() }
-            factory<MartyrRepository> { MartyrRepositoryImpl(MartyrRemoteDataSource(get())) }
+            factory<MartyrRepository> {
+                MartyrRepositoryImpl(
+                    MartyrRemoteDataSource(get()),
+                    //MartyrLocalDataSource(get<AppDatabase>().martyrDao())
+                )
+            }
             factory<CommentRepository> { CommentRepositoryImpl(CommentRemoteDataSource(get())) }
+
             viewModel { (sort: Int) ->
                 com.example.martyrs.feature.common.MartyrsViewModel(
                     sort, get()

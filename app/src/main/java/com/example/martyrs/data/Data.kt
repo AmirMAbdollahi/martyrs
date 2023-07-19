@@ -1,6 +1,8 @@
 package com.example.martyrs.data
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -20,4 +22,4 @@ data class Data(
     val photoUrl: String,
     val testamentFileUrl: String?,
     val testamentText: String?
-):Parcelable
+) : Parcelable

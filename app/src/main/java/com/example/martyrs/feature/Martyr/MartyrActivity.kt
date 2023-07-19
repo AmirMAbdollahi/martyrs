@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.martyrs.R
 import com.example.martyrs.common.BaseActivity
 import com.example.martyrs.common.EXTRA_KEY_ID
+import com.example.martyrs.common.reversDate
 import com.example.martyrs.data.DataComment
 import com.example.martyrs.feature.Martyr.comment.AddCommentFragment
 import com.example.martyrs.feature.Martyr.comment.CommentListAdapter
@@ -47,14 +48,14 @@ class MartyrActivity : BaseActivity(), AddCommentFragment.NoticeDialogListener {
             imageLoadingService.loadImage(martyrImage, it.photoUrl)
             fullName.text = it.fullName
             toolbarTitleTv.text = it.fullName
-            if (it.age!=0)
+            if (it.age != 0)
                 age.text = it.age.toString()
             else age.text = getString(R.string.noInformation)
             if (!it.fatherFirstName.isNullOrEmpty())
                 fatherName.text = it.fatherFirstName
             else fatherName.text = getString(R.string.noInformation)
             if (!it.birthDate.isNullOrEmpty())
-                birthDate.text = it.birthDate
+                birthDate.text = reversDate(it.birthDate)
             else birthDate.text = getString(R.string.noInformation)
             if (!it.martyrDate.isNullOrEmpty())
                 martyrDate.text = it.martyrDate

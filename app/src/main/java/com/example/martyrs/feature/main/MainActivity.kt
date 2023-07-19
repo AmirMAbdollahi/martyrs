@@ -42,6 +42,9 @@ class MainActivity : BaseActivity(), MartyrListAdapter.MartyrOnClickListener {
             Timber.i(it.toString())
             martyrListAdapter.martyrs = it!!.result.data as ArrayList<Data>
         }
+//        viewModel.martyrLocalLiveData.observe(this) {
+//            martyrListAdapter.martyrs = it!!.result.data as ArrayList<Data>
+//        }
 
 
         val handler = Handler()
@@ -89,7 +92,10 @@ class MainActivity : BaseActivity(), MartyrListAdapter.MartyrOnClickListener {
                 .setSingleChoiceItems(R.array.sortTitleArray, viewModel.sort)
                 { dialog, selectedSortIndex ->
                     dialog.dismiss()
-                    viewModel.onSelectedSortChangeByUser(selectedSortIndex,etSearch.text.toString())
+                    viewModel.onSelectedSortChangeByUser(
+                        selectedSortIndex,
+                        etSearch.text.toString()
+                    )
                 }
                 .setTitle(getString(R.string.sort))
             dialog.show()

@@ -41,8 +41,7 @@ class AddCommentFragment : DialogFragment() {
         } catch (e: ClassCastException) {
             // The activity doesn't implement the interface, throw exception
             throw ClassCastException(
-                (context.toString() +
-                        " must implement NoticeDialogListener")
+                (context.toString() + " must implement NoticeDialogListener")
             )
         }
     }
@@ -65,23 +64,29 @@ class AddCommentFragment : DialogFragment() {
             // Pass null as the parent view because its going in the dialog layout
             builder.setView(v)
                 // Add action buttons
-                .setPositiveButton(R.string.addComment,
+                .setPositiveButton(
+                    R.string.addComment,
                     DialogInterface.OnClickListener { dialog, id ->
-                        viewModel.addComment(
-                            comment!!.text.toString(),
-                            firstName!!.text.toString(),
-                            lastName!!.text.toString(),
-                            phoneNumber!!.text.toString(),
-                            martyrId!!
-                        )
-                        // TODO: back here (sleep 1000)
-                        Thread.sleep(1000)
-                        listener.onDialogDismiss()
+                        if (!firstName.text.isNullOrEmpty() &&
+                            !lastName.text.isNullOrEmpty() &&
+                            !phoneNumber.text.isNullOrEmpty() &&
+                            !comment.text.isNullOrEmpty()
+                        ) {
+                            viewModel.addComment(
+                                comment!!.text.toString(),
+                                firstName!!.text.toString(),
+                                lastName!!.text.toString(),
+                                phoneNumber!!.text.toString(),
+                                martyrId!!
+                            )
+                            // TODO: back here (sleep 1000)
+                            Thread.sleep(1000)
+                            listener.onDialogDismiss()
+                        }
                     })
-                .setNegativeButton(R.string.cancel,
-                    DialogInterface.OnClickListener { dialog, id ->
-                        getDialog()!!.cancel()
-                    })
+                .setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialog, id ->
+                    getDialog()!!.cancel()
+                })
 
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")

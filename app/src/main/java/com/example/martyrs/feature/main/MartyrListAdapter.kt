@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.martyrs.R
+import com.example.martyrs.common.implementSpringAnimationTrait
+import com.example.martyrs.common.reversDate
 import com.example.martyrs.data.Data
 import com.example.martyrs.services.ImageLoadingService
 import com.example.martyrs.view.MartyrImageView
@@ -30,9 +32,11 @@ class MartyrListAdapter(val imageLoadingService: ImageLoadingService) :
         fun bind(data: Data) {
             fullName.text = data.fullName
             fatherName.text = data.fatherFirstName
+            // TODO: revers data.birthDate data.birthDate?.let { reversDate(it) }
             birthDate.text = data.birthDate
             martyrDate.text = data.martyrDate
             imageLoadingService.loadImage(martyrImage, data.photoUrl)
+            itemView.implementSpringAnimationTrait()
             itemView.setOnClickListener {
                 martyrOnClickListener?.martyrClick(data)
             }
