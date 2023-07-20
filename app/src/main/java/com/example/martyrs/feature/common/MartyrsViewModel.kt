@@ -3,15 +3,13 @@ package com.example.martyrs.feature.common
 import androidx.lifecycle.MutableLiveData
 import com.example.martyrs.R
 import com.example.martyrs.common.BaseViewModel
+import com.example.martyrs.common.MartyrSingleObserver
 import com.example.martyrs.data.EmptyState
 import com.example.martyrs.data.Martyr
 import com.example.martyrs.data.Sort
 import com.example.martyrs.data.repository.MartyrRepository
-import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 
 class MartyrsViewModel(var sort: Int, val martyrRepository: MartyrRepository) :
     BaseViewModel() {
@@ -55,11 +53,7 @@ class MartyrsViewModel(var sort: Int, val martyrRepository: MartyrRepository) :
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doFinally { progressBarLiveData.value = false }
-            .subscribe(object : SingleObserver<Martyr> {
-                override fun onSubscribe(d: Disposable) {
-                    compositeDisposable.add(d)
-                }
-
+            .subscribe(object : MartyrSingleObserver<Martyr>(compositeDisposable) {
                 override fun onSuccess(t: Martyr) {
 //                    if (!query.isNullOrEmpty() && !t.result.data.isNullOrEmpty()) {
 //                        //type something
@@ -82,11 +76,6 @@ class MartyrsViewModel(var sort: Int, val martyrRepository: MartyrRepository) :
                             EmptyState(true, R.string.searchMartyrNotExist)
                     }
                 }
-
-                override fun onError(e: Throwable) {
-                    Timber.e(e)
-                }
-
             })
     }
 

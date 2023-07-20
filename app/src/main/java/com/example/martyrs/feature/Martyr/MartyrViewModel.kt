@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.martyrs.R
 import com.example.martyrs.common.BaseViewModel
 import com.example.martyrs.common.EXTRA_KEY_DATA
+import com.example.martyrs.common.MartyrSingleObserver
 import com.example.martyrs.data.Comment
 import com.example.martyrs.data.Data
 import com.example.martyrs.data.DataComment
@@ -34,11 +35,7 @@ class MartyrViewModel(bundle: Bundle, val commentRepository: CommentRepository) 
         commentRepository.getComment(martyrLiveData.value!!.martyrId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<Comment> {
-                override fun onSubscribe(d: Disposable) {
-                    compositeDisposable.add(d)
-                }
-
+            .subscribe(object : MartyrSingleObserver<Comment>(compositeDisposable) {
                 override fun onSuccess(t: Comment) {
                     if (t.result.totalCount == 0) {
                         commentEmptyState.value = EmptyState(true, R.string.commentNotExist)
@@ -48,11 +45,6 @@ class MartyrViewModel(bundle: Bundle, val commentRepository: CommentRepository) 
                     }
                     totalCountLiveData.value = t.result.totalCount
                 }
-
-                override fun onError(e: Throwable) {
-                    Timber.e(e)
-                }
-
             })
     }
 

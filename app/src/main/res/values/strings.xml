@@ -25,6 +25,9 @@
     <string name="searchMartyr">نام شهید مورد نظر خود را وارد کنید.</string>
     <string name="searchMartyrNotExist">شهیدی با این نام وجود ندارد.</string>
     <string name="commentNotExist">کامنتی وجود ندارد.</string>
+    <string name="errorJsonException">خطا در تجزیه و تحلیل داده های دریافتی از سرور</string>
+    <string name="errorThrowable">خطا در اجرای درخواست</string>
+    <string name="unknownError">خطای نامشخص</string>
 
     <string name="sort">مرتب سازی</string>
     <string name="noSort" />

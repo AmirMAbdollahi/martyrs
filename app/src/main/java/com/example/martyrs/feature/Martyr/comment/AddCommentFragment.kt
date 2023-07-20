@@ -67,11 +67,11 @@ class AddCommentFragment : DialogFragment() {
                 .setPositiveButton(
                     R.string.addComment,
                     DialogInterface.OnClickListener { dialog, id ->
-                        if (!firstName.text.isNullOrEmpty() &&
-                            !lastName.text.isNullOrEmpty() &&
-                            !phoneNumber.text.isNullOrEmpty() &&
-                            !comment.text.isNullOrEmpty()
-                        ) {
+//                        if (!firstName.text.isNullOrEmpty() &&
+//                            !lastName.text.isNullOrEmpty() &&
+//                            !phoneNumber.text.isNullOrEmpty() &&
+//                            !comment.text.isNullOrEmpty()
+//                        ) {
                             viewModel.addComment(
                                 comment!!.text.toString(),
                                 firstName!!.text.toString(),
@@ -82,7 +82,7 @@ class AddCommentFragment : DialogFragment() {
                             // TODO: back here (sleep 1000)
                             Thread.sleep(1000)
                             listener.onDialogDismiss()
-                        }
+                        //}
                     })
                 .setNegativeButton(R.string.cancel, DialogInterface.OnClickListener { dialog, id ->
                     getDialog()!!.cancel()
